@@ -1,0 +1,67 @@
+<html><body><meta charset="utf-8"><p></p><div align="left">
+ <span style="font-size:16">&lt;!DOCTYPE&nbsp;html&gt;</span>
+</div><div align="left">
+ <span style="font-size:16">&lt;html&nbsp;lang="zh-CN"&gt;</span>
+</div><div align="left">
+ <span style="font-size:16">&lt;head&gt;</span>
+</div><div align="left">
+ <span style="font-size:16">&nbsp;&nbsp;&nbsp;&nbsp;&lt;meta&nbsp;charset="UTF-8"&gt;</span>
+</div><div align="left">
+ <span style="font-size:16">&nbsp;&nbsp;&nbsp;&nbsp;&lt;meta&nbsp;name="viewport"&nbsp;content="width=device-width,&nbsp;initial-scale=1.0"&gt;</span>
+</div><div align="left">
+ <span style="font-size:16">&nbsp;&nbsp;&nbsp;&nbsp;&lt;title&gt;520快乐&nbsp;·&nbsp;给小乖&lt;/title&gt;</span>
+</div><div align="left">
+ <span style="font-size:16">&nbsp;&nbsp;&nbsp;&nbsp;&lt;style&gt;</span>
+</div><div align="left">
+ <span style="font-size:16">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;{</span>
+</div><div align="left">
+ <span style="font-size:16">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;margin:&nbsp;0;</span>
+</div><div align="left">
+ <span style="font-size:16">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;padding:&nbsp;0;</span>
+</div><div align="left">
+ <span style="font-size:16">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;box-sizing:&nbsp;border-box;</span>
+</div><div align="left">
+ <span style="font-size:16">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</span>
+</div><br><div align="left">
+ <span style="font-size:16">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;body&nbsp;{</span>
+</div><div align="left">
+ <span style="font-size:16">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;background:&nbsp;#f6efe5;</span>
+</div><div align="left">
+ <span style="font-size:16">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;background-image:</span>
+</div><div align="left">
+ <span style="font-size:16">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;repeating-linear-gradient(0deg,&nbsp;transparent,&nbsp;transparent&nbsp;20px,&nbsp;rgba(180,160,140,0.06)&nbsp;20px,&nbsp;rgba(180,160,140,0.06)&nbsp;21px),</span>
+</div><div align="left">
+ <span style="font-size:16">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;repeating-linear-gradient(90deg,&nbsp;transparent,&nbsp;transparent&nbsp;20px,&nbsp;rgba(180,160,140,0.04)&nbsp;20px,&nbsp;rgba(180,160,140,0.04)&nbsp;21px);</span>
+</div><div align="left">
+ <span style="font-size:16">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;font-family:&nbsp;"Georgia",&nbsp;"Noto&nbsp;Serif&nbsp;SC",&nbsp;"Songti&nbsp;SC",&nbsp;"SimSun",&nbsp;宋体,&nbsp;serif;</span>
+</div><div align="left">
+ <span style="font-size:16">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;display:&nbsp;flex;</span>
+</div><div align="left">
+ <span style="font-size:16">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;justify-content:&nbsp;center;</span>
+</div><div align="left">
+ <span style="font-size:16">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;align-items:&nbsp;center;</span>
+</div><div align="left">
+ <span style="font-size:16">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;min-height:&nbsp;100vh;</span>
+</div><div align="left">
+ <span style="font-size:16">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;padding:&nbsp;1.5rem;</span>
+</div><div align="left">
+ <span style="font-size:16">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;overflow-x:&nbsp;hidden;</span>
+</div><div align="left">
+ <span style="font-size:16">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;position:&nbsp;relative;</span>
+</div><div align="left">
+ <span style="font-size:16">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</span>
+</div><br><div align="left">
+ <span style="font-size:16">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/*&nbsp;信纸容器&nbsp;+&nbsp;淡入&nbsp;*/</span>
+</div><div align="left">
+ <span style="font-size:16">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.paper&nbsp;{</span>
+</div><div align="left">
+ <span style="font-size:16">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;background:&nbsp;#fffef9;</span>
+</div><div align="left">
+ <span style="font-size:16">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;max-width:&nbsp;700px;</span>
+</div><div align="left">
+ <span style="font-size:16">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;width:&nbsp;100%;</span>
+</div><div align="left">
+ 
+</div><div align="left">
+ <span style="font-size:16">&lt;/html&gt;</span>
+</div><p></p></body></html>
