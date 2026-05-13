@@ -308,27 +308,9 @@
         <hr class="divider">
 
         <div class="word-count">
-            📝 实时字数：<span id="liveWordCount">0</span>
+            📝 字数：<span>2602</span>
         </div>
     </div>
-
-    <script>
-        const contentEl = document.querySelector('.content');
-        const countSpan = document.getElementById('liveWordCount');
-
-        function countChinese(str) {
-            const match = str.match(/[\u4e00-\u9fff\u3400-\u4dbf]/g);
-            return match ? match.length : 0;
-        }
-
-        function updateCount() {
-            const text = contentEl.innerText || '';
-            countSpan.textContent = countChinese(text);
-        }
-
-        updateCount();
-        contentEl.addEventListener('input', updateCount);
-    </script>
 
 </body>
 </html>
