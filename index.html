@@ -3,28 +3,24 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>梦信 · 26.8.25</title>
+    <title>日记 · 无声</title>
     <style>
-        /* 全局重置 & 阴沉基调 */
+        /* ——— 阴沉基调 ——— */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-
         body {
             background: #0b090a;
             min-height: 100vh;
             display: flex;
             justify-content: center;
-            align-items: center;
+            padding: 3rem 1.5rem;
             font-family: 'Georgia', 'Times New Roman', '宋体', serif;
-            padding: 2rem 1.5rem;
             position: relative;
             overflow-x: hidden;
         }
-
-        /* 阴翳纹理 overlay */
         body::before {
             content: '';
             position: fixed;
@@ -41,8 +37,7 @@
             z-index: 1;
         }
 
-        /* 信纸容器 —— 像旧纸页 */
-        .letter {
+        .diary {
             position: relative;
             z-index: 2;
             max-width: 760px;
@@ -52,119 +47,58 @@
             padding: 3rem 2.8rem;
             border: 1px solid rgba(80, 60, 55, 0.3);
             border-radius: 4px;
-            box-shadow:
-                0 20px 60px rgba(0, 0, 0, 0.8),
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8),
                 inset 0 1px 0 rgba(120, 90, 80, 0.15),
                 inset 0 -1px 0 rgba(0, 0, 0, 0.5);
-            transition: all 0.2s ease;
         }
 
-        /* 磨损的边缘光晕 */
-        .letter::after {
-            content: '';
-            position: absolute;
-            inset: -2px;
-            border-radius: 6px;
-            background: radial-gradient(ellipse at 30% 20%, rgba(60, 40, 35, 0.2), transparent 70%),
-                radial-gradient(ellipse at 70% 80%, rgba(40, 25, 20, 0.25), transparent 60%);
-            pointer-events: none;
-            z-index: -1;
-        }
-
-        /* 信内所有文字 */
-        .letter-content {
+        /* ——— 每一条日记 ——— */
+        .entry {
+            margin-bottom: 3.2rem;
+            padding-bottom: 2.4rem;
+            border-bottom: 1px solid rgba(80, 60, 55, 0.15);
             color: #b8a9a0;
             line-height: 2.1;
             font-size: 1.05rem;
             letter-spacing: 0.03em;
             text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
         }
+        .entry:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
 
-        /* 段落间距 */
-        .letter-content p {
-            margin-bottom: 1.6rem;
+        /* 日期 —— 每个条目最前面 */
+        .entry-date {
+            font-size: 0.95rem;
+            color: #7a655a;
+            letter-spacing: 0.15em;
+            margin-bottom: 0.8rem;
+            font-style: italic;
+            text-indent: 0;
+        }
+
+        /* 正文 —— 保留换行，不需要任何格式 */
+        .entry-text {
             text-indent: 2em;
+            white-space: pre-wrap;    /* 保留你敲的空行和换行 */
             word-break: break-word;
         }
 
-        /* 首行无缩进的特殊段落（用于日期、称呼等） */
-        .letter-content p.no-indent {
-            text-indent: 0;
+        /* ——— 响应式 ——— */
+        @media (max-width: 600px) {
+            .diary {
+                padding: 2rem 1.2rem;
+            }
+            .entry {
+                font-size: 0.95rem;
+                line-height: 2;
+                margin-bottom: 2.4rem;
+                padding-bottom: 1.8rem;
+            }
         }
 
-        /* 称呼 —— 更沉一点 */
-        .letter-content .salutation {
-            font-size: 1.2rem;
-            color: #cbb5a8;
-            letter-spacing: 0.12em;
-            margin-bottom: 2rem;
-            text-indent: 0;
-            font-weight: 400;
-            border-bottom: 1px solid rgba(100, 75, 65, 0.2);
-            padding-bottom: 0.8rem;
-        }
-
-        .letter-content .salutation span {
-            color: #8a6e62;
-            font-style: italic;
-        }
-
-        /* 日期 —— 像旧信笺上的手写日期 */
-        .letter-content .date {
-            text-align: right;
-            font-size: 0.9rem;
-            color: #6d5b52;
-            letter-spacing: 0.15em;
-            margin-top: 2.2rem;
-            padding-top: 1rem;
-            border-top: 1px solid rgba(80, 60, 55, 0.2);
-            text-indent: 0;
-            font-style: italic;
-        }
-
-        /* 关键情绪词 —— 极淡的强调 */
-        .letter-content .emphasis {
-            color: #b08a7a;
-            font-weight: 400;
-            letter-spacing: 0.05em;
-        }
-
-        .letter-content .fade {
-            color: #6d5b52;
-        }
-
-        /* 分隔符 —— 破碎感 */
-        .letter-content .divider {
-            display: block;
-            text-align: center;
-            color: #4d3d36;
-            font-size: 0.9rem;
-            letter-spacing: 0.6em;
-            margin: 2rem 0 1.8rem;
-            opacity: 0.5;
-            text-indent: 0;
-        }
-
-        /* 姓名落款 —— 轻而沉 */
-        .letter-content .signature {
-            text-align: right;
-            font-size: 1rem;
-            color: #8a7266;
-            letter-spacing: 0.2em;
-            margin-top: 1.2rem;
-            text-indent: 0;
-            font-style: italic;
-        }
-
-        /* 一些悬停微光 (鼠标划过时信纸略亮) */
-        .letter:hover {
-            box-shadow:
-                0 25px 70px rgba(0, 0, 0, 0.9),
-                inset 0 1px 0 rgba(140, 100, 85, 0.2),
-                inset 0 -1px 0 rgba(0, 0, 0, 0.5);
-        }
-
-        /* 滚动条暗色 */
+        /* ——— 滚动条 ——— */
         ::-webkit-scrollbar {
             width: 6px;
             background: #0b090a;
@@ -177,24 +111,7 @@
             background: #3d2d26;
         }
 
-        /* 移动端调整 */
-        @media (max-width: 600px) {
-            .letter {
-                padding: 2rem 1.2rem;
-            }
-            .letter-content {
-                font-size: 0.95rem;
-                line-height: 2;
-            }
-            .letter-content p {
-                margin-bottom: 1.2rem;
-            }
-            .letter-content .salutation {
-                font-size: 1.05rem;
-            }
-        }
-
-        /* 小装饰 —— 极淡的尘埃粒子 (纯css) */
+        /* ——— 微尘 ——— */
         .dust {
             position: fixed;
             border-radius: 50%;
@@ -203,7 +120,6 @@
             z-index: 0;
             animation: floatDust linear infinite alternate;
         }
-
         .dust:nth-child(1) {
             width: 4px;
             height: 4px;
@@ -243,7 +159,6 @@
             animation-duration: 25s;
             animation-delay: -14s;
         }
-
         @keyframes floatDust {
             0% {
                 transform: translate(0, 0) scale(1);
@@ -258,90 +173,91 @@
 </head>
 <body>
 
-    <!-- 浮动尘埃 (纯氛围) -->
     <div class="dust"></div>
     <div class="dust"></div>
     <div class="dust"></div>
     <div class="dust"></div>
     <div class="dust"></div>
 
-    <!-- 信 -->
-    <div class="letter">
-        <div class="letter-content">
-
-            <!-- 称呼 -->
-            <p class="salutation no-indent">
-                <span>——</span> 阿林 <span>——</span>
-            </p>
-
-            <!-- 正文 -->
-            <p>
-                昨晚梦到你了，梦到你给我发消息，就发了一个字，后面一条十几个字的消息撤回了。
-                梦里的我比现实还要决绝一点，我第一反应抗拒着想逃离，但是最终还是拿着手机询问怎么了，
-                我骗自己万一是你有什么急事需要我帮忙呢。
-                后面我们复合了，从复合的那一刻我就知道我在梦里了。
-                那一瞬间突然想起现实里每个无法入睡的深夜，想起一遍又一遍不愿意提起但烂熟于心的号码。
-                我痛苦的看向你身后梦境里的虚无——
-                这也是二十年来唯一一次清醒着知道自己在做梦。
-                但是，我还没有醒。
-                我不愿醒着。
-            </p>
-
-            <p>
-                我有在写歌。最近。我想离开这里和各种掺杂的情绪，那天晚上坐火车，凌晨两点多我靠窗看外面的灯火，写了一些歌。
-                我不想写和你有关的任何东西，可我好像只会写这些了。
-            </p>
-
-            <p>
-                其实我确实学到很多东西。我想你对我的影响比你心里想的和我当初所预估的都要深的多。
-                我确实不是一个随便投入感情的人。阿林。
-                哪怕是现在我还庆幸…难过的是我。
-            </p>
-
-            <p>
-                我愿意你快乐幸福的过一生的。也希望你美满。我不想你人生或者伴侣出现任何的差池，
-                我希望你身边的人都比我更加珍惜你，不然我只会更加痛苦。
-                我不想你受一点委屈了。我知道我们相处的时候你也会委屈的。
-                我…我可能不太懂怎么去爱你。
-                但是，我现在好像彻底失去爱人的能力了。也许是好事。
-            </p>
-
-            <p>
-                我很痛苦。每一天。但这不是你或者我的原因。
-                我不想等到你彻底厌烦我的那天，还是想保留一点最后的尊严。也许没保留住?
-                我不知道了。我只知道接近厌烦的边缘，我不敢再去碰触了。
-            </p>
-
-            <p>
-                其实我真的真的很讨厌自己卖惨的。可是真的有点惨吧。
-                虽然也是我咎由自取。
-            </p>
-
-            <p>
-                未来有那么多那么多可能，真的找不到一个和我有关的吗?
-                其实也可以有对不对。
-                但是我贪心不足，我想要更多，想要靠前一点的位置。
-                这个做不到，对不对。
-            </p>
-
-            <p>
-                其实我也真的很想陪着你，想要给你涂白色的睫毛膏，想要你牵住我。
-                我的手好凉。
-            </p>
-
-            <!-- 分隔 -->
-            <span class="divider">· · ·</span>
-
-            <!-- 日期 & 落款 -->
-            <p class="date no-indent">
-                26.8.25&nbsp;&nbsp;
-            </p>
-            <p class="signature no-indent">
-                   JY.
-            </p>
-
-        </div>
+    <div class="diary" id="diaryRoot">
+        <!-- 由 JavaScript 自动生成 -->
     </div>
+
+    <script>
+        // ================================================================
+        //  🌙 日记数据 —— 你以后只需要在这里加新条目
+        //  格式：{ date: "日期", content: "内容（可以随便换行）" }
+        //  新条目加在 **最前面**，这样最新看的放在最上面。
+        // ================================================================
+        const entries = [
+            // ↓↓↓ 在这里粘贴新日记（复制下面这个格式，放在最顶上） ↓↓↓
+           {
+    date: "2026.08.26 ",
+    content: `快开学了。今天太阳很烈。假期只出了一次远门，终日在家里无所事事，只睡觉和打游戏。好事是轻了不少，快两位数了。
+    希望你一切都好。`
+},
+            {
+                date: "2026.08.25 凌晨",
+                content: `昨晚梦到你了，梦到你给我发消息，就发了一个字，后面一条十几个字的消息撤回了。
+        梦里的我比现实还要决绝一点，我第一反应抗拒着想逃离，但是最终还是拿着手机询问怎么了，
+        我骗自己万一是你有什么急事需要我帮忙呢。
+
+        后面我们复合了，从复合的那一刻我就知道我在梦里了。
+        那一瞬间突然想起现实里每个无法入睡的深夜，想起一遍又一遍不愿意提起但烂熟于心的号码。
+        我痛苦的看向你身后梦境里的虚无——
+        这也是二十年来唯一一次清醒着知道自己在做梦。
+        但是，我还没有醒。
+        我不愿醒着。
+
+        我有在写歌。最近。我想离开这里和各种掺杂的情绪，那天晚上坐火车，凌晨两点多我靠窗看外面的灯火，写了一些歌。
+        我不想写和你有关的任何东西，可我好像只会写这些了。
+
+        其实我确实学到很多东西。我想你对我的影响比你心里想的和我当初所预估的都要深的多。
+        我确实不是一个随便投入感情的人。阿林。
+        哪怕是现在我还庆幸…难过的是我。
+
+        我愿意你快乐幸福的过一生的。也希望你美满。我不想你人生或者伴侣出现任何的差池，
+        我希望你身边的人都比我更加珍惜你，不然我只会更加痛苦。
+        我不想你受一点委屈了。我知道我们相处的时候你也会委屈的。
+        我…我可能不太懂怎么去爱你。
+        但是，我现在好像彻底失去爱人的能力了。也许是好事。
+
+        我很痛苦。每一天。但这不是你或者我的原因。
+        我不想等到你彻底厌烦我的那天，还是想保留一点最后的尊严。也许没保留住?
+        我不知道了。我只知道接近厌烦的边缘，我不敢再去碰触了。
+
+        其实我真的真的很讨厌自己卖惨的。可是真的有点惨吧。
+        虽然也是我咎由自取。
+
+        未来有那么多那么多可能，真的找不到一个和我有关的吗?
+        其实也可以有对不对。
+        但是我贪心不足，我想要更多，想要靠前一点的位置。
+        这个做不到，对不对。
+
+        其实我也很想见你，想给你涂白色的睫毛膏，想要你牵住我。
+        我的手好凉。`
+            }
+            // ↑↑↑ 新日记加在上面 ↑↑↑
+        ];
+
+        // ——— 渲染 ———
+        const root = document.getElementById('diaryRoot');
+        function render() {
+            let html = '';
+            for (let i = 0; i < entries.length; i++) {
+                const e = entries[i];
+                // 把内容里的换行保留下来（white-space: pre-wrap 会配合）
+                html += `
+                    <div class="entry">
+                        <div class="entry-date">${e.date}</div>
+                        <div class="entry-text">${e.content}</div>
+                    </div>
+                `;
+            }
+            root.innerHTML = html;
+        }
+        render();
+    </script>
 
 </body>
 </html>
