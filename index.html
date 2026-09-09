@@ -1,291 +1,289 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-     <style>
-        /* ——— 阴沉基调 ——— */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        body {
-            background: #0b090a;
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            padding: 3rem 1.5rem;
-            font-family: 'Georgia', 'Times New Roman', '宋体', serif;
-            position: relative;
-            overflow-x: hidden;
-        }
-        body::before {
-            content: '';
-            position: fixed;
-            inset: 0;
-            background:
-                radial-gradient(ellipse at 20% 50%, rgba(30, 20, 20, 0.6) 0%, transparent 70%),
-                radial-gradient(ellipse at 80% 30%, rgba(20, 10, 10, 0.5) 0%, transparent 60%),
-                repeating-linear-gradient(45deg,
-                    rgba(0, 0, 0, 0.03) 0px,
-                    rgba(0, 0, 0, 0.03) 2px,
-                    rgba(255, 255, 255, 0.01) 2px,
-                    rgba(255, 255, 255, 0.01) 4px);
-            pointer-events: none;
-            z-index: 1;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>我的日记本</title>
+  <style>
+    /* ——— 阴沉基调 ——— */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-        .diary {
-            position: relative;
-            z-index: 2;
-            max-width: 760px;
-            width: 100%;
-            background: rgba(18, 14, 15, 0.85);
-            backdrop-filter: blur(2px);
-            padding: 3rem 2.8rem;
-            border: 1px solid rgba(80, 60, 55, 0.3);
-            border-radius: 4px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8),
-                inset 0 1px 0 rgba(120, 90, 80, 0.15),
-                inset 0 -1px 0 rgba(0, 0, 0, 0.5);
-        }
+    body {
+      background: #0b090a;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center; /* 确保内容在垂直方向居中 */
+      padding: 3rem 1.5rem;
+      font-family: 'Georgia', 'Times New Roman', '宋体', serif;
+      position: relative;
+      overflow-x: hidden;
+    }
 
-        /* ——— 每一条日记 ——— */
-        .entry {
-            margin-bottom: 3.2rem;
-            padding-bottom: 2.4rem;
-            border-bottom: 1px solid rgba(80, 60, 55, 0.15);
-            color: #b8a9a0;
-            line-height: 2.1;
-            font-size: 1.05rem;
-            letter-spacing: 0.03em;
-            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
-        }
-        .entry:last-child {
-            border-bottom: none;
-            margin-bottom: 0;
-        }
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at 20% 50%, rgba(30, 20, 20, 0.6) 0%, transparent 70%),
+        radial-gradient(ellipse at 80% 30%, rgba(20, 10, 10, 0.5) 0%, transparent 60%),
+        repeating-linear-gradient(45deg,
+          rgba(0, 0, 0, 0.03) 0px,
+          rgba(0, 0, 0, 0.03) 2px,
+          rgba(255, 255, 255, 0.01) 2px,
+          rgba(255, 255, 255, 0.01) 4px);
+      pointer-events: none;
+      z-index: 1;
+    }
 
-        /* 日期 —— 每个条目最前面 */
-        .entry-date {
-            font-size: 0.95rem;
-            color: #7a655a;
-            letter-spacing: 0.15em;
-            margin-bottom: 0.8rem;
-            font-style: italic;
-            text-indent: 0;
-        }
+    .diary {
+      position: relative;
+      z-index: 2;
+      max-width: 760px;
+      width: 100%;
+      background: rgba(18, 14, 15, 0.85);
+      backdrop-filter: blur(2px);
+      padding: 3rem 2.8rem;
+      border: 1px solid rgba(80, 60, 55, 0.3);
+      border-radius: 4px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8),
+        inset 0 1px 0 rgba(120, 90, 80, 0.15),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.5);
+    }
 
-        /* 正文 —— 保留换行，不需要任何格式 */
-        .entry-text {
-            text-indent: 2em;
-            white-space: pre-wrap;    /* 保留你敲的空行和换行 */
-            word-break: break-word;
-        }
+    /* ——— 每一条日记 ——— */
+    .entry {
+      margin-bottom: 3.2rem;
+      padding-bottom: 2.4rem;
+      border-bottom: 1px solid rgba(80, 60, 55, 0.15);
+      color: #b8a9a0;
+      line-height: 2.1;
+      font-size: 1.05rem;
+      letter-spacing: 0.03em;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
+    }
 
-        /* ——— 响应式 ——— */
-        @media (max-width: 600px) {
-            .diary {
-                padding: 2rem 1.2rem;
-            }
-            .entry {
-                font-size: 0.95rem;
-                line-height: 2;
-                margin-bottom: 2.4rem;
-                padding-bottom: 1.8rem;
-            }
-        }
+    .entry:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+    }
 
-        /* ——— 滚动条 ——— */
-        ::-webkit-scrollbar {
-            width: 6px;
-            background: #0b090a;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #2d211c;
-            border-radius: 4px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #3d2d26;
-        }
+    /* 日期 —— 每个条目最前面 */
+    .entry-date {
+      font-size: 0.95rem;
+      color: #7a655a;
+      letter-spacing: 0.15em;
+      margin-bottom: 0.8rem;
+      font-style: italic;
+      text-indent: 0;
+    }
 
-        /* ——— 微尘 ——— */
-        .dust {
-            position: fixed;
-            border-radius: 50%;
-            background: rgba(180, 150, 130, 0.05);
-            pointer-events: none;
-            z-index: 0;
-            animation: floatDust linear infinite alternate;
-        }
-        .dust:nth-child(1) {
-            width: 4px;
-            height: 4px;
-            top: 12%;
-            left: 8%;
-            animation-duration: 18s;
-        }
-        .dust:nth-child(2) {
-            width: 7px;
-            height: 7px;
-            top: 45%;
-            right: 5%;
-            animation-duration: 23s;
-            animation-delay: -6s;
-        }
-        .dust:nth-child(3) {
-            width: 3px;
-            height: 3px;
-            bottom: 20%;
-            left: 15%;
-            animation-duration: 15s;
-            animation-delay: -10s;
-        }
-        .dust:nth-child(4) {
-            width: 5px;
-            height: 5px;
-            top: 70%;
-            right: 12%;
-            animation-duration: 20s;
-            animation-delay: -3s;
-        }
-        .dust:nth-child(5) {
-            width: 6px;
-            height: 6px;
-            top: 30%;
-            left: 80%;
-            animation-duration: 25s;
-            animation-delay: -14s;
-        }
-        @keyframes floatDust {
-            0% {
-                transform: translate(0, 0) scale(1);
-                opacity: 0.2;
-            }
-            100% {
-                transform: translate(30px, -40px) scale(1.6);
-                opacity: 0.6;
-            }
-        }
-    </style>
+    /* 正文 —— 保留换行，不需要任何格式 */
+    .entry-text {
+      text-indent: 2em;
+      white-space: pre-wrap;    /* 保留你敲的空行和换行 */
+      word-break: break-word;
+    }
+
+    /* ——— 响应式 ——— */
+    @media (max-width: 600px) {
+      .diary {
+        padding: 2rem 1.2rem;
+      }
+      .entry {
+        font-size: 0.95rem;
+        line-height: 2;
+        margin-bottom: 2.4rem;
+        padding-bottom: 1.8rem;
+      }
+    }
+
+    /* ——— 滚动条 ——— */
+    ::-webkit-scrollbar {
+      width: 6px;
+      background: #0b090a;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #2d211c;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #3d2d26;
+    }
+
+    /* ——— 微尘 ——— */
+    .dust {
+      position: fixed;
+      border-radius: 50%;
+      background: rgba(180, 150, 130, 0.05);
+      pointer-events: none;
+      z-index: 0;
+      animation: floatDust linear infinite alternate;
+    }
+
+    .dust:nth-child(1) {
+      width: 4px;
+      height: 4px;
+      top: 12%;
+      left: 8%;
+      animation-duration: 18s;
+    }
+    .dust:nth-child(2) {
+      width: 7px;
+      height: 7px;
+      top: 45%;
+      right: 5%;
+      animation-duration: 23s;
+      animation-delay: -6s;
+    }
+    .dust:nth-child(3) {
+      width: 3px;
+      height: 3px;
+      bottom: 20%;
+      left: 15%;
+      animation-duration: 15s;
+      animation-delay: -10s;
+    }
+    .dust:nth-child(4) {
+      width: 5px;
+      height: 5px;
+      top: 70%;
+      right: 12%;
+      animation-duration: 20s;
+      animation-delay: -3s;
+    }
+    .dust:nth-child(5) {
+      width: 6px;
+      height: 6px;
+      top: 30%;
+      left: 80%;
+      animation-duration: 25s;
+      animation-delay: -14s;
+    }
+
+    @keyframes floatDust {
+      0% {
+        transform: translate(0, 0) scale(1);
+        opacity: 0.2;
+      }
+      100% {
+        transform: translate(30px, -40px) scale(1.6);
+        opacity: 0.6;
+      }
+    }
+  </style>
 </head>
 <body>
+  <div class="dust"></div>
+  <div class="dust"></div>
+  <div class="dust"></div>
+  <div class="dust"></div>
+  <div class="dust"></div>
 
-    <div class="dust"></div>
-    <div class="dust"></div>
-    <div class="dust"></div>
-    <div class="dust"></div>
-    <div class="dust"></div>
+  <div class="diary" id="diaryRoot">
+    <!-- 由 JavaScript 自动生成 -->
+  </div>
 
-    <div class="diary" id="diaryRoot">
-        <!-- 由 JavaScript 自动生成 -->
-    </div>
+  <script>
+    // ================================================================
+    //  🌙 日记数据 —— 你以后只需要在这里加新条目
+    //  格式：{ date: "日期", content: "内容（可以随便换行）" }
+    //  新条目加在 **最前面**，这样最新看的放在最上面。
+    // ================================================================
+    const entries = [
+      // ↓↓↓ 在这里粘贴新日记（复制下面这个格式，放在最顶上） ↓↓↓
+      {
+        date: "2026.9.9 深夜",
+        content: `没有社交  不想吃饭  每天就在床上孤独的躺到天黑
+          想去荒原或者终日下雪的地方
+          刚刚刷到薛的其实，去青岛的时候躺在车上就一直在听，听到最后也没睡着
+          编曲好难啊 完全没有什么头绪 交给别人做又不放心 再斟酌斟酌
+          其实一直没有告诉过你 1027这个日子对我是有特殊含义的 一直很重要很重要。所以知道你生日是那一天的时候我很恍惚和惊喜。不过这些虚无缥缈的含义对你而言是空泛的，我早该想明白这些。是我不懂了，也许那个时候我并没有自己以为的那么聪明，但是现在，我算成长了很多吧，也许可以像小王子里说的那样去形容——那时我还太年轻，不知道如何去爱他。
+          我想最后能尽一点自己义务的就是不再强行融入你的生活，就像塞林格说的，爱是想触碰却收回手。
+          我会留在原地。我终于深刻的感受到自己没有爱人的能力，这也是我能做出的最好的选择。`
+      }, {
+        date: "2026.9.7 夜",
+        content: `我想了想还是算了，不打扰你了。这样做确实挺自私的，之前你也说过那么多次不想再这样。就这么结束吧。`
+      }, {
+        date: "2026.9.7 午后",
+        content: `好晕。一觉睡到下午两点身上一点力气没有。我想想。今天一睡醒就有奶茶喝，朋友点的。好喝。不过太甜了，我喝了一口就扔了。我想起来一件事，马上中秋了，之前说中秋给你买三只松鼠的奶黄流心月饼的，这个是我说过的，我想兑现。然后兑现方式...现在肯定是只能手机号转账了，其实很便宜，30R，但是我也挺怕你生气的。我再想想吧。`
+      }, {
+        date: "2026.9.5 夜",
+        content: `未来如果遇到任何事情都可以和我说，我答应你会尽我所能的帮你，如果你需要的话。任何事。我不会再食言了。
+          当然，希望你永远都不会有需要任何人帮助的那天。祝安。`
+      }, {
+        date: "2026.9.5 夜",
+        content: `最近也过上了昼夜颠倒的生活，一觉睡醒天黑了。想着吃点东西，用蛋白粉和燕麦冲了点粥，卖相很难看，没胃口了。
+          
+          我好想你。对不起。`
+      }, {
+        date: "2026.9.4 晴",
+        content: `好久没见到太阳了，一早就让同学帮忙晒了一下被子。昨天晚上特别舒服，风凉凉的，有早秋的感觉。学校四面环山，阴影笼罩着一抹一抹树影婆娑，还有不间断的风声。我形容不出来，但是昨晚我坐在围栏边好久，伸手摸了摸缝隙里探出来的小花。我的生命就迎合着这样的夜风静坐。
+          祝你一切平安。`
+      }, {
+        date: "2026.9.1 ",
+        content: `摔骨裂了。医生让绑石膏，没有听他的，太不方便了。现在移动困难，一个人在酒店住几天。`
+      }, {
+        date: "2026.08.29 夜",
+        content: `这两天在整理。一部分小小的，琐碎的叙述和记忆。有一首歌旋律和词都写好了，明天到学校，不是很累的话试试编曲。一共三首，是个小EP。名字，我还是想用yyl.
+          想起七月的时候买了一盆多肉，只有手心一圈大小。一个人在寝室里多少有点孤单吧，给它买了漂亮的陶瓷碗和很贵的养料，希望它可以一直留在这里慢慢长大。带它回来那天，本来想告诉你的..我不记得有没有告诉你了，当时想让你给它取一个名字。但是呢，我很怕它会很早就夭折，最后没有这么做。
+          最后它两个星期就凋零了，叶子泛黄发涩一片片落下来。不过也没多难过，没有取名是好事情。
+          打字的时候瞥到页面标签觉得有点好笑  居然用github写信。应该称之为日记吧。我知道你早就不想牵扯了，你很累。我总是可以给自己找到很多很多的事情做的。一贯如此。
+          外面突然下起暴雨了。刚刚被冰雹一样砸下来的声音惊了一下，起身关窗户被雨水溅了半身。天空很好看，是玫瑰色，暮色四合。虽然已经不是傍晚了。如果你在家的话，上饶那边也在下雨，出门记得带雨伞吧。
+          说这些胸口还是有点发闷。先这样吧。祝你身体健康。`
+      }, {
+        date: "2026.08.26 ",
+        content: `快开学了。今天太阳很烈。假期只出了一次远门，终日里在家无所事事，只睡觉和打游戏。好事是轻了不少，快两位数了。
+          希望你一切都好。
+          另，明天中元，晚上最好少出门吧。`
+      }, {
+        date: "2026.08.25 凌晨",
+        content: `昨晚梦到你了，梦到你给我发消息，就发了一个字，后面一条十几个字的消息撤回了。
+          梦里的我比现实还要决绝一点，我第一反应抗拒着想逃离，但是最终还是拿着手机询问怎么了，
+          我骗自己万一是你有什么急事需要我帮忙呢。 后面我们复合了，从复合的那一刻我就知道我在梦里了。
+          那一瞬间突然想起现实里每个无法入睡的深夜，想起一遍又一遍不愿意提起但烂熟于心的号码。
+          这也是我二十年来唯一一次清醒着知道自己在做梦。
+          但是，我还没有醒。我不愿醒着。
 
-    <script>
-        // ================================================================
-        //  🌙 日记数据 —— 你以后只需要在这里加新条目
-        //  格式：{ date: "日期", content: "内容（可以随便换行）" }
-        //  新条目加在 **最前面**，这样最新看的放在最上面。
-        // ================================================================
-        const entries = [
-            // ↓↓↓ 在这里粘贴新日记（复制下面这个格式，放在最顶上） ↓↓↓
-   
-{
-    date: "2026.9.9 深夜",
-    content: `没有社交  不想吃饭  每天就在床上孤独的躺到天黑
-   想去荒原或者终日下雪的地方
-  刚刚刷到薛的其实，去青岛的时候躺在车上就一直在听，听到最后也没睡着
-  编曲好难啊 完全没有什么头绪 交给别人做又不放心 再斟酌斟酌
-  其实一直没有告诉过你 1027这个日子对我是有特殊含义的 一直很重要很重要。所以知道你生日是那一天的时候我很恍惚和惊喜。不过这些虚无缥缈的含义对你而言是空泛的，我早该想明白这些。是我不懂了，也许那个时候我并没有自己以为的那么聪明，但是现在，我算成长了很多吧，也许可以像小王子里说的那样去形容——那时我还太年轻，不知道如何去爱他。
-  我想最后能尽一点自己义务的就是不再强行融入你的生活，就像塞林格说的，爱是想触碰却收回手。
-  我会留在原地。我终于深刻的感受到自己没有爱人的能力，这也是我能做出的最好的选择。`
-}, {
-    date: "2026.9.7 夜"
-    content: `我想了想还是算了，不打扰你了。这样做确实挺自私的，之前你也说过那么多次不想再这样。就这么结束吧。`
-},{
-    date: "2026.9.7 午后",
-    content: `好晕。一觉睡到下午两点身上一点力气没有。我想想。今天一睡醒就有奶茶喝，朋友点的。好喝。不过太甜了，我喝了一口就扔了。我想起来一件事，马上中秋了，之前说中秋给你买三只松鼠的奶黄流心月饼的，这个是我说过的，我想兑现。然后兑现方式...现在肯定是只能手机号转账了，其实很便宜，30R，但是我也挺怕你生气的。我再想想吧。`
-},
-            {
-    date: "2026.9.5 夜 ",
-    content: `未来如果遇到任何事情都可以和我说，我答应你会尽我所能的帮你，如果你需要的话。任何事。我不会再食言了。
-    当然，希望你永远都不会有需要任何人帮助的那天。祝安。`
-},    {
-    date: "2026.9.5 夜",
-    content: `最近也过上了昼夜颠倒的生活，一觉睡醒天黑了。想着吃点东西，用蛋白粉和燕麦冲了点粥，卖相很难看，没胃口了。
-   
-    
-    我好想你。对不起。`
-},   {
-    date: "2026.9.4 晴",
-    content: `好久没见到太阳了，一早就让同学帮忙晒了一下被子。昨天晚上特别舒服，风凉凉的，有早秋的感觉。学校四面环山，阴影笼罩着一抹一抹树影婆娑，还有不间断的风声。我形容不出来，但是昨晚我坐在围栏边好久，伸手摸了摸缝隙里探出来的小花。我的生命就迎合着这样的夜风静坐。
-    祝你一切平安。`
-},
-            {
-    date: "2026.9.1 ",
-    content: `摔骨裂了。医生让绑石膏，没有听他的，太不方便了。现在移动困难，一个人在酒店住几天。`
-},
-            {    
-    date: "2026.08.29 夜",
-    content: `这两天在整理。一部分小小的，琐碎的叙述和记忆。有一首歌旋律和词都写好了，明天到学校，不是很累的话试试编曲。一共三首，是个小EP。名字，我还是想用yyl.
-    想起七月的时候买了一盆多肉，只有手心一圈大小。一个人在寝室里多少有点孤单吧，给它买了漂亮的陶瓷碗和很贵的养料，希望它可以一直留在这里慢慢长大。带它回来那天，本来想告诉你的..我不记得有没有告诉你了，当时想让你给它取一个名字。但是呢，我很怕它会很早就夭折，最后没有这么做。
-    最后它两个星期就凋零了，叶子泛黄发涩一片片落下来。不过也没多难过，没有取名是好事情。
-    打字的时候瞥到页面标签觉得有点好笑  居然用github写信。应该称之为日记吧。我知道你早就不想牵扯了，你很累。我总是可以给自己找到很多很多的事情做的。一贯如此。
-    外面突然下起暴雨了。刚刚被冰雹一样砸下来的声音惊了一下，起身关窗户被雨水溅了半身。天空很好看，是玫瑰色，暮色四合。虽然已经不是傍晚了。如果你在家的话，上饶那边也在下雨，出门记得带雨伞吧。
-    说这些胸口还是有点发闷。先这样吧。祝你身体健康。`
-},
-            {
-    date: "2026.08.26 ",
-    content: `快开学了。今天太阳很烈。假期只出了一次远门，终日里在家无所事事，只睡觉和打游戏。好事是轻了不少，快两位数了。
-    希望你一切都好。
-    另，明天中元，晚上最好少出门吧。`
-},
-            {
-                date: "2026.08.25 凌晨",
-                content: `昨晚梦到你了，梦到你给我发消息，就发了一个字，后面一条十几个字的消息撤回了。
-        梦里的我比现实还要决绝一点，我第一反应抗拒着想逃离，但是最终还是拿着手机询问怎么了，
-        我骗自己万一是你有什么急事需要我帮忙呢。 后面我们复合了，从复合的那一刻我就知道我在梦里了。
-        那一瞬间突然想起现实里每个无法入睡的深夜，想起一遍又一遍不愿意提起但烂熟于心的号码。
-        这也是我二十年来唯一一次清醒着知道自己在做梦。
-        但是，我还没有醒。我不愿醒着。
+          我有在写歌。最近。我想离开这里和各种掺杂的情绪，那天晚上坐火车，凌晨两点多我靠窗看外面的灯火，写了一些歌。我不想写和你有关的任何东西，可我好像只会写这些了。
 
-        我有在写歌。最近。我想离开这里和各种掺杂的情绪，那天晚上坐火车，凌晨两点多我靠窗看外面的灯火，写了一些歌。我不想写和你有关的任何东西，可我好像只会写这些了。
+          其实我确实学到很多东西。我想你对我的影响比你心里想的和我当初所预估的都要深的多。
+          我确实不是一个随便投入感情的人。阿林。希望这样称呼你不会让你感到不适。不过哪怕是现在我还庆幸…难过的是我。
 
-        其实我确实学到很多东西。我想你对我的影响比你心里想的和我当初所预估的都要深的多。
-        我确实不是一个随便投入感情的人。阿林。希望这样称呼你不会让你感到不适。不过哪怕是现在我还庆幸…难过的是我。
+          我愿意你快乐幸福的过一生的。也希望你美满。我不想你人生或者伴侣出现任何的差池，我希望你身边的人都比我更加珍惜你，不然我只会更加痛苦。我不想你受一点委屈了。我知道我们相处的时候你也会委屈的。我…我可不太懂怎么去爱你。但是，我现在彻失去爱人的能力了。也许是好事。
 
-        我愿意你快乐幸福的过一生的。也希望你美满。我不想你人生或者伴侣出现任何的差池，我希望你身边的人都比我更加珍惜你，不然我只会更加痛苦。我不想你受一点委屈了。我知道我们相处的时候你也会委屈的。我…我可不太懂怎么去爱你。但是，我现在彻失去爱人的能力了。也许是好事。
+          我很痛苦。每一天。但这不是你或者我的原因。我不想等到你彻底厌烦我的那天，还是想保留一点最后的尊严。也许没保留住?我不知道了。我只知道接近厌烦的边缘，我不敢再去碰触了。
 
-        我很痛苦。每一天。但这不是你或者我的原因。我不想等到你彻底厌烦我的那天，还是想保留一点最后的尊严。也许没保留住?我不知道了。我只知道接近厌烦的边缘，我不敢再去碰触了。
+          其实我真的真的很讨厌卖惨的。可是真的算不甘心吧。虽然也是我咎由自取。
 
-        其实我真的真的很讨厌卖惨的。可是真的算不甘心吧。虽然也是我咎由自取。
+          未来有那么多那么多可能，真的找不到一个和我有关的吗?其实也可以有对不对。但是我贪心不足，我想要更多，想要靠前一点的位置。这个做不到，对不对。
 
-        未来有那么多那么多可能，真的找不到一个和我有关的吗?其实也可以有对不对。但是我贪心不足，我想要更多，想要靠前一点的位置。这个做不到，对不对。
+          其实我也很想见你，想给你涂白色的睫毛膏，想要你牵住我。 我的手好凉。`
+      }
+      // ↑↑↑ 新日记加在上面 ↑↑↑
+    ];
 
-        其实我也很想见你，想给你涂白色的睫毛膏，想要你牵住我。 我的手好凉。`
-            }
-            // ↑↑↑ 新日记加在上面 ↑↑↑
-        ];
-
-        // ——— 渲染 ———
-        const root = document.getElementById('diaryRoot');
-        function render() {
-            let html = '';
-            for (let i = 0; i < entries.length; i++) {
-                const e = entries[i];
-                // 把内容里的换行保留下来（white-space: pre-wrap 会配合）
-                html += `
-                    <div class="entry">
-                        <div class="entry-date">${e.date}</div>
-                        <div class="entry-text">${e.content}</div>
-                    </div>
-                `;
-            }
-            root.innerHTML = html;
-        }
-        render();
-    </script>
-
+    // ——— 渲染 ———
+    const root = document.getElementById('diaryRoot');
+    function render() {
+      let html = '';
+      for (let i = 0; i < entries.length; i++) {
+        const e = entries[i];
+        // 把内容里的换行保留下来（white-space: pre-wrap 会配合）
+        html += `
+          <div class="entry">
+            <div class="entry-date">${e.date}</div>
+            <div class="entry-text">${e.content}</div>
+          </div>
+        `;
+      }
+      root.innerHTML = html;
+    }
+    render();
+  </script>
 </body>
 </html>
