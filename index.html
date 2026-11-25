@@ -62,7 +62,7 @@
       border-bottom: 1px solid rgba(80, 60, 55, 0.15);
       color: #b8a9a0;
       line-height: 2.1;
-      font-size: 1.05rem;
+      font-size: 1.4rem;
       letter-spacing: 0.03em;
       text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
     }
@@ -74,7 +74,7 @@
 
     /* 日期 —— 每个条目最前面 */
     .entry-date {
-      font-size: 0.95rem;
+      font-size: 1.15rem;
       color: #7a655a;
       letter-spacing: 0.15em;
       margin-bottom: 0.8rem;
@@ -95,7 +95,7 @@
         padding: 2rem 1.2rem;
       }
       .entry {
-        font-size: 0.95rem;
+        font-size: 1.2rem;
         line-height: 2;
         margin-bottom: 2.4rem;
         padding-bottom: 1.8rem;
@@ -337,11 +337,12 @@ date: "2026.11.25 夜",
       let html = '';
       for (let i = 0; i < entries.length; i++) {
         const e = entries[i];
-        // 把内容里的换行保留下来（white-space: pre-wrap 会配合）
+        // 去掉模板字符串里每一行开头的代码缩进，避免行首参差不齐
+        const text = e.content.replace(/^[ \t]+/gm, '').trim();
         html += `
           <div class="entry">
             <div class="entry-date">${e.date}</div>
-            <div class="entry-text">${e.content}</div>
+            <div class="entry-text">${text}</div>
           </div>
         `;
       }
